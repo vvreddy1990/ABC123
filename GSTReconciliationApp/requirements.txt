@@ -7,5 +7,3 @@ openpyxl==3.1.5
 streamlit-aggrid==0.3.4.post3
 python-dateutil==2.9.0
 tqdm==4.66.2
-
-python-Levenshtein==0.23.0 
