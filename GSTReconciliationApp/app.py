@@ -229,7 +229,7 @@ if section == "Settings":
                 updated_report = apply_settings_to_reconciliation(st.session_state.final_report, settings)
                 st.session_state.final_report = updated_report
                 st.success("✅ Settings applied to existing reconciliation results!")
-                st.experimental_rerun()
+                st.rerun()
         
         with col2:
             if st.button("📊 View Settings Impact", type="secondary"):
@@ -310,7 +310,7 @@ if section != "Settings":
                             st.markdown(f"   {rec['description']}")
                             st.markdown(f"   Estimated matches: {rec['estimated_matches']}")
                     
-                    st.experimental_rerun()
+                    st.rerun()
             
             # --- Raw Data Summary ---
             st.markdown("##### Raw Data Summary")
@@ -494,7 +494,7 @@ if section != "Settings":
                             df.at[idx, "Status"] = new_status
                     st.session_state.final_report = df
                     st.success(f"Updated status for {len(selected)} rows.")
-                    st.experimental_rerun()
+                    st.rerun()
                 st.info("Scroll left/right and up/down to view all columns. All original and reconciliation columns are included. Use column headers to filter and sort. You can also resize and reorder columns. Table header is sticky and always visible.")
             else:
                 st.info("Run reconciliation to view transactions table.")
@@ -819,14 +819,14 @@ if section != "Settings":
     with col_add:
         if st.button("Add Another GSTIN Set", key="add_gstin_set"):
             st.session_state.gstin_comment_sets.append({'gstins': '', 'comment': '', 'status': 'Both'})
-            st.experimental_rerun()
+            st.rerun()
     with col_remove:
         if len(st.session_state.gstin_comment_sets) > 1:
             for i in range(len(st.session_state.gstin_comment_sets)):
                 remove_label = f"Remove Set {i+1}"
                 if st.button(remove_label, key=f"remove_gstin_set_{i}"):
                     st.session_state.gstin_comment_sets.pop(i)
-                    st.experimental_rerun()
+                    st.rerun()
 
     # --- FORM START ---
     with st.form("gstin_comments_form"):
@@ -867,7 +867,7 @@ if section != "Settings":
                 st.session_state.gstin_comment_message = (f"✅ Comments applied successfully! {total_updated} rows updated.", 'success')
             else:
                 st.session_state.gstin_comment_message = ("ℹ️ No rows matched the criteria. No comments were applied.", 'info')
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.session_state.gstin_comment_sets = new_sets
 
